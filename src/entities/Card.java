@@ -1,16 +1,21 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
+import game.AssetLoader;
+
 public class Card {
 	private Suit suit;
 	private int rank;
 	private String label;
 	private boolean isFaceUp;
+	private BufferedImage image;
 	
 	public Card(Suit suit, String label) {
 		this.suit = suit;
 		this.label = label;
 		this.rank = this.suit.getRank() + CardRank.getCardRank(this.label);
-		this.isFaceUp = false;
+		this.isFaceUp = false;		
 	}
 
 	public Suit getSuit() {
@@ -45,6 +50,14 @@ public class Card {
 		this.isFaceUp = isFaceUp;
 	}
 	
+	public BufferedImage getImage() {
+		return image;
+	}	
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		String details = this.label + " - " + this.suit.getName()

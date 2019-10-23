@@ -1,7 +1,9 @@
 package entities;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
@@ -10,13 +12,13 @@ public class Deck {
 	public static final int MAX_CARD = 52;
 	private static Stack<Card> cards;
 	
-	private final String[] CARD_LABELS = {
+	public static final String[] CARD_LABELS = {
 			"3", "4", "5", "6", "7",
 			"8", "9", "10", "J", "Q",
 			"K", "A", "2"
 	};
 	
-	private final String[] CARD_SUITS = {
+	public static final String[] CARD_SUITS = {
 			"SPADE", "CLOVER", "DIAMOND", "HEART"
 	};
 	
@@ -36,6 +38,15 @@ public class Deck {
 				Card card = new Card(suit, cardLabel);
 				cards.push(card);
 			}
+		}
+	}
+	
+	public void setCardImages(Map<String, BufferedImage> cardImgs) {
+		for(Card c : cards) {
+			String label = c.getLabel();
+			String suit = c.getSuit().getName();
+			BufferedImage img = cardImgs.get(label + "_" + suit);
+			c.setImage(img);
 		}
 	}
 	
